@@ -1,0 +1,90 @@
+// linkedlist 自定義類別.cpp : 此檔案包含 'main' 函式。程式會於該處開始執行及結束執行。
+//
+
+#include "pch.h"
+#include <iostream>
+#include<string>    //記得加這行不然會有問題
+using namespace std;
+class LinkedList;
+class ListNode {
+private:
+	string name;
+	int Algebra;
+	int java;
+	int Ds;
+	ListNode*next;
+public:
+	ListNode(string input, int a = 0, int b = 0, int c = 0) :name(input), Algebra(a), java(b), Ds(c),next(0) {};
+	friend class LinkedList;
+};
+class LinkedList {
+private:
+	ListNode*first;
+	int num;
+
+
+public:
+	LinkedList() :first(0),num(1) {};
+
+	void Print() {
+		ListNode*current = first;
+		while (current != 0)
+		{
+			cout << "No. " << num++ << " ";
+			cout << current->name << " ";
+			if (current->Algebra != 0)
+			{
+				cout << " Algebra(" << current->Algebra << "),";
+			}
+			if (current->java != 0)
+			{
+				cout << " java(" << current->java << "),";
+			}
+			if (current->Ds != 0)
+			{
+				cout << " Ds(" << current->Ds << "),";
+			}
+			cout << endl;
+			current = current->next;
+		}
+}
+	void AddLink(string input1,int a=0,int b=0,int c=0) {
+		ListNode*newNode = new ListNode(input1,a,b,c);
+		if (first == 0)
+		{
+			first = newNode;
+
+			return void();
+		}
+		ListNode*current = first;
+		while (current->next != 0)
+		{
+			current = current->next;
+		}
+		current->next = newNode;
+		return void();
+	}
+
+};
+
+int main()
+{
+	
+	LinkedList q;
+	q.AddLink("John",0,90,78);
+	q.AddLink("Mary", 66, 90, 78);
+	q.Print();
+	system("pause");
+	return 0;
+}
+
+// 執行程式: Ctrl + F5 或 [偵錯] > [啟動但不偵錯] 功能表
+// 偵錯程式: F5 或 [偵錯] > [啟動偵錯] 功能表
+
+// 開始使用的秘訣: 
+//   1. 使用 [方案總管] 視窗，新增/管理檔案
+//   2. 使用 [Team Explorer] 視窗，連線到原始檔控制
+//   3. 使用 [輸出] 視窗，參閱組建輸出與其他訊息
+//   4. 使用 [錯誤清單] 視窗，檢視錯誤
+//   5. 前往 [專案] > [新增項目]，建立新的程式碼檔案，或是前往 [專案] > [新增現有項目]，將現有程式碼檔案新增至專案
+//   6. 之後要再次開啟此專案時，請前往 [檔案] > [開啟] > [專案]，然後選取 .sln 檔案
